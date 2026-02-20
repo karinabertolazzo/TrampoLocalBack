@@ -1,0 +1,19 @@
+# Build
+bin/
+obj/
+
+# User-specific
+.vs/
+*.user
+*.suo
+
+# Local DB
+*.mdf
+*.ldf
+
+# Environment
+.env
+
+# Rider / VS Code
+.idea/
+.vscode/
