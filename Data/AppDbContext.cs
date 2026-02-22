@@ -13,6 +13,8 @@ namespace TrampoLocal.API.Data
         public DbSet<Profissional> Profissionais { get; set; }
         public DbSet<Servico> Servicos { get; set; }
         public DbSet<Avaliacao> Avaliacoes { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,7 +25,7 @@ namespace TrampoLocal.API.Data
                 .HasIndex(p => p.CPF)
                 .IsUnique();
 
-            // 🔐 Definindo precisão do decimal Preco
+            //  Definindo precisão do decimal Preco
             modelBuilder.Entity<Servico>()
                 .Property(s => s.Preco)
                 .HasPrecision(10, 2);
@@ -41,6 +43,16 @@ namespace TrampoLocal.API.Data
                 .WithMany(p => p.Avaliacoes)
                 .HasForeignKey(a => a.ProfissionalId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+
+            // Relacionamento Profissional -> Categoria
+            modelBuilder.Entity<Profissional>()
+                .HasOne(p => p.Categoria)
+                .WithMany(c => c.Profissionais)
+                .HasForeignKey(p => p.CategoriaId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
         }
     }
 }

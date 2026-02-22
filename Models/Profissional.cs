@@ -22,9 +22,7 @@ namespace TrampoLocal.API.Models
         [MaxLength(100)]
         public string Cidade { get; set; }
 
-        [Required]
-        [MaxLength(100)]
-        public string Categoria { get; set; }
+        
 
         [MaxLength(500)]
         public string? Descricao { get; set; }
@@ -34,5 +32,9 @@ namespace TrampoLocal.API.Models
         // Relacionamentos
         public List<Servico> Servicos { get; set; } = new();
         public List<Avaliacao> Avaliacoes { get; set; } = new();
+        public int CategoriaId { get; set; }
+        public Categoria Categoria { get; set; }
+
+
     }
 }
